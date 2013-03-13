@@ -1,4 +1,4 @@
-var app = require('express')()
+var app = require('express')() 
   , fs = require('fs')
   , server = require('http').createServer(app)
   , io = require('socket.io').listen(server)
