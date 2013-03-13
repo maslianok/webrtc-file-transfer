@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8">
+    <title>Тестовое задание. Получение файла.</title>
+    <script src="/socket.io/socket.io.js"></script>
+    <script type="text/javascript" charset="utf-8">
+
+      var socket = io.connect('http://localhost:8080/');
+      
+      socket.on('MoreData', function (data){
+        document.getElementById('progressBar').style.width = data['Percent'] + '%';
+        document.getElementById('percent').innerHTML = (Math.round(data['Percent']*100)/100) + '%';
+      });
+      
+      socket.on('Done', function (data){
+        var content =   "Данные успешно загружены. \
+                <a href='/" + data['Name'] + "'>Загрузить</a>";
+        document.getElementById('uploadarea').innerHTML = content;
+        document.getElementById('uploadbox').style.width = '270px';
+        document.getElementById('uploadbox').style.height = '270px';
+        document.getElementById('uploadbox').style.textAlign = 'center';
+      });
+   
+    </script>
+<style type="text/css" media="screen">
+body {
+  background: #F9F9F9;
+  font-family: Calibri;
+  font-size: 18px;
+}
+
+h2 {
+  font-size: 40px;
+  margin-top: 6px;
+  margin-bottom: 10px;
+}
+
+#progressContainer {
+  width: 396px;
+  height: 36px;
+  background: #F8F8F8;
+  margin-top: 14px;
+  border: 1px solid #E8E8E8;
+  border-top: 1px solid #D8D8D8;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  border-radius: 4px;
+  padding: 2px;
+}
+
+#progressBar {
+  height: 100%;
+  width: 0%;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  border-radius: 4px;
+  background: -moz-linear-gradient(top, #a50aad 0%, #6b0d6b 50%, #a50aad 100%);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#a50aad), color-stop(50%,#6b0d6b), color-stop(100%,#a50aad)); 
+  background: -webkit-linear-gradient(top, #a50aad 0%,#6b0d6b 50%,#a50aad 100%); 
+}
+
+#uploadbox {
+  background: #FFF;
+  padding: 20px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-left: -200px;
+  margin-top: -150px;
+  height: 200px;
+  width: 400px;
+  border: 1px solid #DFDFDF;
+  -webkit-box-shadow: 0px 0px 16px 0px rgba(0,0,0,0.2);
+  -moz-box-shadow: 0px 0px 16px 0px rgba(0,0,0,0.2);
+  box-shadow: 0px 0px 16px 0px rgba(0,0,0,0.2);
+  -webkit-border-radius: 11px;
+  -moz-border-radius: 11px;
+  border-radius: 11px;
+}
+
+</style>
+  </head>
+  <body> 
+    <div id='uploadbox'>
+      <h2>Получение файла:</h2>
+      <span id='uploadarea'>
+        <span id="NameArea"></span>
+          <div id="progressContainer"><div id="progressBar"></div></div><span id="percent">0%</span>
+      </span>
+    </div>
+  </body>
+</html>
