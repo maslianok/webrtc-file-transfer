@@ -5,7 +5,7 @@ yandex
 
 ======
 
-1. Приложение использует node.js(express, socket.io) на сервере и HTML5 File API на клиенте.
+.1. Приложение использует node.js(express, socket.io) на сервере и HTML5 File API на клиенте.
 
 Доступны следующие ссылки:
 
@@ -20,7 +20,7 @@ http://localhost:8080/receiver
 Протестировано в последних версиях Firefox и Chrome.
 
 
-2. Обмен данными с помощью WebRTC Data Channel
+.2. Обмен данными с помощью WebRTC Data Channel
 
 WebRTC позволяют обмениваться данными между браузерами в режиме реального времени. На данный момент доступны в Firefox Beta/Aurora и Chrome Canary. 
 
